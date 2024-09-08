@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "backoffice-slackbot"
+version = "0.1.0"
+description = ""
+authors = ["haga-takeshi-ab <108505398+haga-takeshi-ab@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "backoffice_slackbot", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9.0,<3.12"
+python-dotenv = "^1.0.1"
+langchain = "^0.1.9"
+langchain-core = "^0.1.26"
+langchain-community = "^0.0.24"
+slack-bolt = "^1.18.1"
+boto3 = "^1.34.49"
+langchain-openai = "^0.0.7"
+unstructured = {extras = ["md"], version = "^0.12.4"}
+chromadb = "^0.4.23"
+langchain-text-splitters = "^0.0.1"
+faiss-cpu = "^1.8.0"
+atlassian-python-api = "^3.41.11"
+pillow = "^10.3.0"
+pytesseract = "^0.3.10"
+dependency-injector = "^4.41.0"
+langsmith = "^0.1.116"
+langchainhub = "^0.1.21"
+pandas = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

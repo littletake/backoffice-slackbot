@@ -1,0 +1,12 @@
+.venv
+.vscode
+.ruff_cache
+**.env**
+
+# cache
+**__pycache__**
+**.DS_Store**
+
+#data
+**data
+**config.yaml**
