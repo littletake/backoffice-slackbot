@@ -14,6 +14,10 @@ from presentation.slack.rag_bot import SlackBot
 
 
 class Container(containers.DeclarativeContainer):
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    slack_bot_token = os.getenv("SLACK_BOT_TOKEN")
+    slack_app_token = os.getenv("SLACK_APP_TOKEN")
+
     config = providers.Configuration()
 
     data_directory_path = os.path.join(os.getcwd(), constant.DATA_DIRECTORY)
@@ -33,8 +37,6 @@ class Container(containers.DeclarativeContainer):
         data_directory_path, constant.BACKOFFICE_STAFF_PATH, "data.csv"
     )
 
-    openai_api_key = config.openai_api_key
-
     openai_embeddings = providers.Singleton(
         OpenAIEmbeddings, api_key=openai_api_key, model=constant.EMBEDDING
     )
@@ -44,6 +46,7 @@ class Container(containers.DeclarativeContainer):
 
     """infrastructure layer providers
     """
+    # AssumeRoleを使ってアクセスする場合はkey不要
     s3_client = providers.Singleton(
         S3Client,
         aws_access_key_id=config.aws_access_key_id,
@@ -83,8 +86,8 @@ class Container(containers.DeclarativeContainer):
     """
     slack_bot = providers.Singleton(
         SlackBot,
-        slack_bot_token=config.slack_bot_token,
-        slack_app_token=config.slack_app_token,
+        slack_bot_token=slack_bot_token,
+        slack_app_token=slack_app_token,
         rag_service=rag_service,
         backoffice_staff_service=backoffice_staff_service,
     )

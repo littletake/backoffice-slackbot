@@ -3,7 +3,6 @@ from containers import Container
 
 def main():
     container = Container()
-    container.config.from_yaml("./src/config.yaml")
     container.wire(modules=["presentation.slack.rag_bot"])
 
     # VectorStoreの初期化
